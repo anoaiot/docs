@@ -23,7 +23,9 @@ $ sudo dd bs=4MB if=folder/image/ignarm/berada of=/dev/microsd/berada
 8. **Boot**
 
 # IGNSDK IoT Runtime
-## cara mengakses petunjuk penggunaan
+IGNSDK IoT runtime merupakan perkakas yang memudahkan client apps library IGNSDK IoT ([Shark.io](npmjs.com/package/shark.io)) mengakses interface perangkat keras, sensor, sql, filesystem, dan etc, menggunakan javascript API.
+
+## Cara mengakses petunjuk penggunaan
 
 pada terminal, ketik
 ~~~bash
