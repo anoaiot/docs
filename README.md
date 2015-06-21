@@ -50,6 +50,7 @@ Options:
 pada terminal ketik
 
 ~~~bash
+$ su
 # ignsdk-iot -t all &
 ~~~
 
@@ -67,6 +68,7 @@ Server ON :  "0.0.0.0" Port : 6969
 ## Menjalankan NodeJS Script dengan runtime **ignsdk-iot**
 
 ~~~bash
+$ su
 # ignsdk-iot -n (aplikasi berbasis node js yang ingin dijalankan)
 ~~~
 
