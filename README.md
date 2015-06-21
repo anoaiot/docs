@@ -22,13 +22,14 @@ $ sudo dd bs=4MB if=folder/image/ignarm/berada of=/dev/microsd/berada
 7. Proses selesai masukan sdcard yang sudah terinstalasi ign arm kedalam komputer berbasis ARM
 8. **Boot**
 
-## cara akses petunjuk penggunaan
+# IGNSDK IoT Runtime
+## cara mengakses petunjuk penggunaan
 
 pada terminal, ketik
-
 ~~~bash
 # ignsdk -h
 ~~~
+
 perintah memunculkan informasi sebagai berikut :
 ~~~bash
 Usage: ignsdk-iot [options]
@@ -42,7 +43,7 @@ Options:
   -h, --help                                  Displays this help.
 ~~~
 
-## cara menjalankan untuk bisa diakses dari luar
+## Menjalankan runtime di jaringan lokal maupun public
 
 pada terminal ketik
 
@@ -50,18 +51,18 @@ pada terminal ketik
 # ignsdk-iot -t all &
 ~~~
 
-perintah tersebut untuk menjalankan ignsdk-iot dengan mengarahkan ke IP yang tersedia pada device.
+perintah tersebut untuk menjalankan runtime ignsdk-iot dengan mengarahkan ke IP yang tersedia pada device.
 
  **-t** itu menunjukan alamat **IP** yang akan menjalankan ignsdk-iot
 
-jika berhasil ada output
+jika berhasil outputnya akan menjadi :
 
 ~~~bash
 # [1] 458
 Server ON :  "0.0.0.0" Port : 6969
 ~~~
 
-## cara menjalankan di lokal
+## Menjalankan NodeJS Script dengan runtime **ignsdk-iot**
 
 ~~~bash
 # ignsdk-iot -n (aplikasi berbasis node js yang ingin dijalankan)
@@ -70,5 +71,6 @@ Server ON :  "0.0.0.0" Port : 6969
 # Contributor
 ## Documentation
 * Brahmanggi Aditya <brahmanggi@gmail.com>
+
 ## Web
 * Rizky Ariestiyansyah <ariestiyansyah.rizky@gmail.com>
