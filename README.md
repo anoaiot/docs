@@ -76,12 +76,126 @@ $ su
 ~~~
 
 # Shark.io
-JS Websocket Client Library for IGNSDK IoT
+JavaScript Client Library untuk mengakses API IGNSDK IoT. Saat ini shark.io baru dapat digunakan pada :
+* NodeJS/JX Core
+* HTML5
 
 ## Instalasi
 ```
 $ npm install shark.io
 ```
+
+## PIN Map
+### Raspberry Pi 2
+![](https://cloud.githubusercontent.com/assets/828293/7487407/2c1bc186-f3e1-11e4-91ad-575fc569055b.png)
+source : http://www.element14.com/community/docs/DOC-73950/l/raspberry-pi-2-model-b-gpio-40-pin-block-pinout
+
+## HTML5 Examples
+
+Source : `tank-web-control.html`
+
+![tank](https://github.com/ignsdk/doc.iot/raw/master/img/use/tank.gif)
+
+~~~html
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <script type="text/javascript" src="../lib.js"></script>
+        <script type="text/javascript">
+            window.onload = function() {
+                var socket;
+
+                socket = new WebSocket("ws://192.168.1.164:6969");
+
+                socket.onclose = function()
+                {
+                    console.error("web channel closed");
+                };
+                socket.onerror = function(error)
+                {
+                    console.error("web channel error: " + error);
+                };
+                socket.onopen = function()
+                {
+                    new sharkIO(socket, function(channel) {
+                        window.fs = channel.objects.fs;
+                        window.gpio = channel.objects.gpio;
+                        gpio.set(18);
+    			gpio.mode("out");
+    			gpio.set(23);
+    			gpio.mode("out");
+    			gpio.set(24);
+    			gpio.mode("out");
+    			gpio.set(25);
+    			gpio.mode("out");
+                    });
+                }
+            }
+
+            function maju(){
+                reset()
+                gpio.write(18,1);
+                gpio.write(24,1);
+            }
+            function mundur(){
+                reset()
+                gpio.write(23,1);
+                gpio.write(25,1);
+            }
+            function kanan_atas(){
+                reset()
+                gpio.write(18,1);
+            }
+            function kiri_atas(){
+                reset()
+                gpio.write(24,1);
+            }
+            function kanan_bawah(){
+                reset()
+                gpio.write(23,1);
+            }
+            function kiri_bawah(){
+                reset()
+                gpio.write(25,1);
+            }
+	    function reset(){
+		  gpio.write(18,0);
+		  gpio.write(23,0);
+		  gpio.write(24,0);
+		  gpio.write(25,0);
+	    }
+        </script>
+    </head>
+	<style>
+	@media (min-width: 30em) {
+    		.row { width: 100%; display: table; table-layout: fixed; }
+    		.col { display: table-cell; }
+	}
+    button{
+        display: block; width: 100%; padding: 16% 0;
+    }
+	</style>
+    <body>
+	<div class="row">
+        <div class="col"></div>
+        <div class="col"><button onclick="maju()"><h1>MAJU</h1></button></div>
+        <div class="col"></div>
+    </div>
+    <div class="row">
+        <div class="col"><button onclick="kiri_atas()"><h1>KIRI</h1></button></div>
+        <div class="col"><button onclick="reset()"><h1>STOP</h1></button></div>
+        <div class="col"><button onclick="kanan_atas()"><h1>KANAN</h1></button></div>
+    </div>
+    <div class="row">
+        <div class="col"></div>
+        <div class="col"><button onclick="mundur()"><h1>MUNDUR</h1></button></div>
+        <div class="col"></div>
+    </div>
+    </body>
+</html>
+~~~
+
 
 ## NodeJS Examples
 
@@ -119,6 +233,7 @@ loop(act,2000);
 ~~~
 
 Source : `led_blink.js`
+
 ~~~javascript
 'use strict';
 
@@ -167,80 +282,6 @@ shark.setup.on('open',function(event){
        });
     });
 });
-~~~
-
-### HTML5 Examples
-~~~html
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <script type="text/javascript" src="../lib.js"></script>
-        <script type="text/javascript">
-            function output(message)
-            {
-                var output = document.getElementById("output");
-                output.innerHTML = output.innerHTML + message + "\n";
-            }
-            window.onload = function() {
-                var socket;
-
-                socket = new WebSocket("ws://127.0.0.1:6969");
-
-                socket.onclose = function()
-                {
-                    console.error("web channel closed");
-                };
-                socket.onerror = function(error)
-                {
-                    console.error("web channel error: " + error);
-                };
-                socket.onopen = function()
-                {
-                    output("WebSocket connected, setting up IGNSDK API.");
-
-                    new sharkIO(socket, function(channel) {
-                        window.fs = channel.objects.fs;
-                        window.sys = channel.objects.sys;
-                        window.net = channel.objects.net;
-                        window.serial = channel.objects.serial;
-                        serial.info(function(event) {
-                            output("Device count: "+event.count);
-                            event.device.forEach(function(i){
-                                output("Location : "+i.location);
-                                output("Port Name : "+i.port);
-                                output("---------------------------");
-                            });
-                        });
-                        //output("Connected to WebChannel, ready to send/receive messages!");
-                    });
-                }
-            }
-        </script>
-        <style type="text/css">
-            html {
-                height: 100%;
-                width: 100%;
-            }
-            #input {
-                width: 400px;
-                margin: 0 10px 0 0;
-            }
-            #send {
-                width: 90px;
-                margin: 0;
-            }
-            #output {
-                width: 500px;
-                height: 300px;
-            }
-        </style>
-    </head>
-    <body>
-        <textarea id="output"></textarea><br />
-        <input id="input" /><input type="submit" id="send" value="Send" onclick="javascript:click();" />
-    </body>
-</html>
 ~~~
 
 # Contributor
