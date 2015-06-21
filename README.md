@@ -233,7 +233,7 @@ loop(act,2000);
 ~~~
 
 Source : `led_blink.js`
-
+![](https://raw.githubusercontent.com/ignsdk/doc.iot/master/img/use/blink.png)
 ~~~javascript
 'use strict';
 
