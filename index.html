@@ -20,7 +20,8 @@
 
     <section class="main-content">
       <h1>
-<a id="instalasi-ign-arm" class="anchor" href="#instalasi-ign-arm" aria-hidden="true"><span class="octicon octicon-link"></span></a>Instalasi IGN Arm</h1>
+<a id="ign-arm" class="anchor" href="#ign-arm" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="http://repo.informatika.lipi.go.id/arm/image/">IGN Arm</a>
+</h1>
 
 <h2>
 <a id="apa-itu-ign-arm-" class="anchor" href="#apa-itu-ign-arm-" aria-hidden="true"><span class="octicon octicon-link"></span></a>Apa itu IGN ARM ?</h2>
@@ -28,16 +29,16 @@
 <p>lihat <a href="http://igos-nusantara.or.id/wiki/index.php?title=Halaman_Utama#IGOS_Nusantara_ARM">IGNwiki</a></p>
 
 <blockquote>
-<p><strong>IGN ARM</strong> adalah distro <strong>IGOS</strong> linux yang dikembangkan khusus untuk komputer dengan arsitektur ARM.</p>
+<p><strong>IGN ARM</strong> adalah distro <strong>IGOS Nusantara</strong> yang dikembangkan khusus untuk komputer dengan arsitektur ARM.</p>
 </blockquote>
 
 <h2>
-<a id="cara-instalasi" class="anchor" href="#cara-instalasi" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cara Instalasi</h2>
+<a id="instalasi" class="anchor" href="#instalasi" aria-hidden="true"><span class="octicon octicon-link"></span></a>Instalasi</h2>
 
 <ol>
-<li>unduh <a href="http://repo.informatika.lipi.go.id/arm/image/">image</a><br>
+<li>unduh <a href="http://repo.informatika.lipi.go.id/arm/image/">image</a>
 </li>
-<li>kemudian extract file yang telah di unduh dengan cara ketik di terminal </li>
+<li>kemudian extract file yang telah di unduh dengan cara ketik di terminal</li>
 </ol>
 
 <div class="highlight highlight-bash"><pre>$ sudo tar xvfJ filename.tar.xz</pre></div>
@@ -46,7 +47,7 @@
 <li>siapkan micro sdcard dengan kapasitas minimal <strong>8 GB</strong>
 </li>
 <li>masukan micro sdcard kedalam extention sdcard dan pasang di pc / laptop</li>
-<li>deteksi device melalui terminal dengan perintah <strong>dmesg</strong> misalkan 
+<li>deteksi device melalui terminal dengan perintah <strong>dmesg</strong> misalkan
 <strong>/dev/mmclbk0</strong>
 </li>
 <li>apabila sudah dipastikan device berada ketik diterminal</li>
@@ -60,7 +61,8 @@
 </ol>
 
 <h1>
-<a id="ignsdk-iot-runtime" class="anchor" href="#ignsdk-iot-runtime" aria-hidden="true"><span class="octicon octicon-link"></span></a>IGNSDK IoT Runtime</h1>
+<a id="ignsdk-iot-runtime" class="anchor" href="#ignsdk-iot-runtime" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="https://github.com/anak10thn/ignsdk-iot">IGNSDK IoT Runtime</a>
+</h1>
 
 <p>IGNSDK IoT runtime merupakan perkakas yang memudahkan client apps library IGNSDK IoT (<a href="npmjs.com/package/shark.io">Shark.io</a>) mengakses interface perangkat keras, sensor, sql, filesystem, dan etc, menggunakan javascript API.</p>
 
@@ -111,6 +113,174 @@ Server ON <span class="pl-c1">:</span>  <span class="pl-s"><span class="pl-pds">
 
 <div class="highlight highlight-bash"><pre>$ su
 <span class="pl-c"># ignsdk-iot -n (aplikasi berbasis node js yang ingin dijalankan)</span></pre></div>
+
+<h1>
+<a id="sharkio" class="anchor" href="#sharkio" aria-hidden="true"><span class="octicon octicon-link"></span></a>Shark.io</h1>
+
+<p>JS Websocket Client Library for IGNSDK IoT</p>
+
+<h2>
+<a id="instalasi-1" class="anchor" href="#instalasi-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Instalasi</h2>
+
+<pre><code>$ npm install shark.io
+</code></pre>
+
+<h2>
+<a id="nodejs-examples" class="anchor" href="#nodejs-examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>NodeJS Examples</h2>
+
+<p>Source : <code>simple.js</code></p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-s"><span class="pl-pds">'</span>use strict<span class="pl-pds">'</span></span>;
+
+<span class="pl-k">var</span> shark <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>shark.io<span class="pl-pds">'</span></span>);
+
+shark.init(<span class="pl-s"><span class="pl-pds">'</span>127.0.0.1:6969<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> setup <span class="pl-k">=</span> shark.setup;
+
+setup.on(<span class="pl-s"><span class="pl-pds">'</span>open<span class="pl-pds">'</span></span>,<span class="pl-k">function</span>(<span class="pl-smi">event</span>){
+    <span class="pl-c1">event</span>.serial<span class="pl-c1">.info</span>(<span class="pl-k">function</span>(<span class="pl-smi">data</span>){
+        <span class="pl-en">console</span><span class="pl-c1">.log</span>(data);
+        <span class="pl-c1">process</span>.exit(<span class="pl-c1">1</span>);
+    });
+});</pre></div>
+
+<p>Source : <code>loop.js</code></p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-s"><span class="pl-pds">'</span>use strict<span class="pl-pds">'</span></span>;
+
+<span class="pl-k">var</span> shark <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>shark.io<span class="pl-pds">'</span></span>);
+
+shark.init(<span class="pl-s"><span class="pl-pds">'</span>127.0.0.1:6969<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> loop <span class="pl-k">=</span> shark.loop;
+
+<span class="pl-k">function</span> <span class="pl-en">act</span>(<span class="pl-smi">event</span>){
+    <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">"</span>Running...<span class="pl-pds">"</span></span>);
+}
+
+loop(act,<span class="pl-c1">2000</span>);</pre></div>
+
+<p>Source : <code>led_blink.js</code></p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-s"><span class="pl-pds">'</span>use strict<span class="pl-pds">'</span></span>;
+
+<span class="pl-k">var</span> shark <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>shark.io<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> sleep <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>sleep<span class="pl-pds">'</span></span>);
+
+shark.init(<span class="pl-s"><span class="pl-pds">'</span>127.0.0.1:6969<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> loop <span class="pl-k">=</span> shark.loop;
+<span class="pl-k">var</span> gpio;
+shark.setup.on(<span class="pl-s"><span class="pl-pds">'</span>open<span class="pl-pds">'</span></span>,<span class="pl-k">function</span>(<span class="pl-smi">event</span>){
+    gpio <span class="pl-k">=</span> <span class="pl-c1">event</span>.gpio;
+    gpio.set(<span class="pl-c1">18</span>);
+    gpio.mode(<span class="pl-s"><span class="pl-pds">"</span>out<span class="pl-pds">"</span></span>);
+});
+
+<span class="pl-k">function</span> <span class="pl-en">act</span>(<span class="pl-smi">event</span>){
+    <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">"</span>on<span class="pl-pds">"</span></span>);
+    gpio.<span class="pl-c1">write</span>(<span class="pl-c1">18</span>,<span class="pl-c1">1</span>);
+    sleep.sleep(<span class="pl-c1">3</span>);
+    <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">"</span>off<span class="pl-pds">"</span></span>);
+    gpio.<span class="pl-c1">write</span>(<span class="pl-c1">18</span>,<span class="pl-c1">0</span>);
+}
+
+loop(act,<span class="pl-c1">500</span>);</pre></div>
+
+<p>Source : <code>gpio_read.js</code></p>
+
+<div class="highlight highlight-javascript"><pre><span class="pl-s"><span class="pl-pds">'</span>use strict<span class="pl-pds">'</span></span>;
+
+<span class="pl-k">var</span> shark <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>shark.io<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> sleep <span class="pl-k">=</span> <span class="pl-c1">require</span>(<span class="pl-s"><span class="pl-pds">'</span>sleep<span class="pl-pds">'</span></span>);
+
+shark.init(<span class="pl-s"><span class="pl-pds">'</span>127.0.0.1:6969<span class="pl-pds">'</span></span>);
+<span class="pl-k">var</span> loop <span class="pl-k">=</span> shark.loop;
+<span class="pl-k">var</span> gpio;
+shark.setup.on(<span class="pl-s"><span class="pl-pds">'</span>open<span class="pl-pds">'</span></span>,<span class="pl-k">function</span>(<span class="pl-smi">event</span>){
+    gpio <span class="pl-k">=</span> <span class="pl-c1">event</span>.gpio;
+    gpio.set(<span class="pl-c1">18</span>);
+    gpio.mode(<span class="pl-s"><span class="pl-pds">"</span>in<span class="pl-pds">"</span></span>);
+    gpio.read(<span class="pl-c1">18</span>,<span class="pl-k">function</span>(<span class="pl-smi">out</span>){
+       out.stream.connect(<span class="pl-k">function</span>(<span class="pl-smi">data</span>){
+          <span class="pl-k">if</span>(data <span class="pl-k">==</span> <span class="pl-c1">1</span>){
+             <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">"</span>ON<span class="pl-pds">"</span></span>)
+          }
+       });
+    });
+});</pre></div>
+
+<h3>
+<a id="html5-examples" class="anchor" href="#html5-examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>HTML5 Examples</h3>
+
+<div class="highlight highlight-html"><pre>&lt;!DOCTYPE html&gt;
+&lt;<span class="pl-ent">html</span>&gt;
+    &lt;<span class="pl-ent">head</span>&gt;
+        &lt;<span class="pl-ent">meta</span> <span class="pl-e">http-equiv</span>=<span class="pl-s"><span class="pl-pds">"</span>Content-Type<span class="pl-pds">"</span></span> <span class="pl-e">content</span>=<span class="pl-s"><span class="pl-pds">"</span>text/html; charset=utf-8<span class="pl-pds">"</span></span> /&gt;
+<span class="pl-s1">        &lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>../lib.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</span>
+<span class="pl-s1">        &lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span>&gt;</span>
+<span class="pl-s1">            <span class="pl-k">function</span> <span class="pl-en">output</span>(<span class="pl-smi">message</span>)</span>
+<span class="pl-s1">            {</span>
+<span class="pl-s1">                <span class="pl-k">var</span> output <span class="pl-k">=</span> <span class="pl-c1">document</span>.<span class="pl-c1">getElementById</span>(<span class="pl-s"><span class="pl-pds">"</span>output<span class="pl-pds">"</span></span>);</span>
+<span class="pl-s1">                output.innerHTML <span class="pl-k">=</span> output.innerHTML <span class="pl-k">+</span> message <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-cce">\n</span><span class="pl-pds">"</span></span>;</span>
+<span class="pl-s1">            }</span>
+<span class="pl-s1">            <span class="pl-c1">window</span>.<span class="pl-en">onload</span> <span class="pl-k">=</span> <span class="pl-k">function</span>() {</span>
+<span class="pl-s1">                <span class="pl-k">var</span> socket;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">                socket <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-en">WebSocket</span>(<span class="pl-s"><span class="pl-pds">"</span>ws://127.0.0.1:6969<span class="pl-pds">"</span></span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">                <span class="pl-c1">socket</span>.<span class="pl-en">onclose</span> <span class="pl-k">=</span> <span class="pl-k">function</span>()</span>
+<span class="pl-s1">                {</span>
+<span class="pl-s1">                    <span class="pl-en">console</span><span class="pl-c1">.error</span>(<span class="pl-s"><span class="pl-pds">"</span>web channel closed<span class="pl-pds">"</span></span>);</span>
+<span class="pl-s1">                };</span>
+<span class="pl-s1">                <span class="pl-c1">socket</span>.<span class="pl-en">onerror</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">error</span>)</span>
+<span class="pl-s1">                {</span>
+<span class="pl-s1">                    <span class="pl-en">console</span><span class="pl-c1">.error</span>(<span class="pl-s"><span class="pl-pds">"</span>web channel error: <span class="pl-pds">"</span></span> <span class="pl-k">+</span> error);</span>
+<span class="pl-s1">                };</span>
+<span class="pl-s1">                <span class="pl-c1">socket</span>.<span class="pl-en">onopen</span> <span class="pl-k">=</span> <span class="pl-k">function</span>()</span>
+<span class="pl-s1">                {</span>
+<span class="pl-s1">                    output(<span class="pl-s"><span class="pl-pds">"</span>WebSocket connected, setting up IGNSDK API.<span class="pl-pds">"</span></span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">                    <span class="pl-k">new</span> <span class="pl-en">sharkIO</span>(socket, <span class="pl-k">function</span>(<span class="pl-smi">channel</span>) {</span>
+<span class="pl-s1">                        <span class="pl-c1">window</span>.fs <span class="pl-k">=</span> channel.objects.fs;</span>
+<span class="pl-s1">                        <span class="pl-c1">window</span>.sys <span class="pl-k">=</span> channel.objects.sys;</span>
+<span class="pl-s1">                        <span class="pl-c1">window</span>.net <span class="pl-k">=</span> channel.objects.net;</span>
+<span class="pl-s1">                        <span class="pl-c1">window</span>.serial <span class="pl-k">=</span> channel.objects.serial;</span>
+<span class="pl-s1">                        serial<span class="pl-c1">.info</span>(<span class="pl-k">function</span>(<span class="pl-smi">event</span>) {</span>
+<span class="pl-s1">                            output(<span class="pl-s"><span class="pl-pds">"</span>Device count: <span class="pl-pds">"</span></span><span class="pl-k">+</span><span class="pl-c1">event</span>.count);</span>
+<span class="pl-s1">                            <span class="pl-c1">event</span>.device.forEach(<span class="pl-k">function</span>(<span class="pl-smi">i</span>){</span>
+<span class="pl-s1">                                output(<span class="pl-s"><span class="pl-pds">"</span>Location : <span class="pl-pds">"</span></span><span class="pl-k">+</span>i.<span class="pl-c1">location</span>);</span>
+<span class="pl-s1">                                output(<span class="pl-s"><span class="pl-pds">"</span>Port Name : <span class="pl-pds">"</span></span><span class="pl-k">+</span>i.<span class="pl-c1">port</span>);</span>
+<span class="pl-s1">                                output(<span class="pl-s"><span class="pl-pds">"</span>---------------------------<span class="pl-pds">"</span></span>);</span>
+<span class="pl-s1">                            });</span>
+<span class="pl-s1">                        });</span>
+<span class="pl-s1">                        <span class="pl-c">//output("Connected to WebChannel, ready to send/receive messages!");</span></span>
+<span class="pl-s1">                    });</span>
+<span class="pl-s1">                }</span>
+<span class="pl-s1">            }</span>
+<span class="pl-s1">        &lt;/<span class="pl-ent">script</span>&gt;</span>
+<span class="pl-s1">        &lt;<span class="pl-ent">style</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text/css<span class="pl-pds">"</span></span>&gt;</span>
+<span class="pl-s1">            <span class="pl-ent">html</span> {</span>
+<span class="pl-s1">                <span class="pl-c1"><span class="pl-c1">height</span></span>: <span class="pl-c1">100<span class="pl-k">%</span></span>;</span>
+<span class="pl-s1">                <span class="pl-c1"><span class="pl-c1">width</span></span>: <span class="pl-c1">100<span class="pl-k">%</span></span>;</span>
+<span class="pl-s1">            }</span>
+<span class="pl-s1">            <span class="pl-e">#input</span> {</span>
+<span class="pl-s1">                <span class="pl-c1"><span class="pl-c1">width</span></span>: <span class="pl-c1">400<span class="pl-k">px</span></span>;</span>
+<span class="pl-s1">                <span class="pl-c1"><span class="pl-c1">margin</span></span>: <span class="pl-c1">0</span> <span class="pl-c1">10<span class="pl-k">px</span></span> <span class="pl-c1">0</span> <span class="pl-c1">0</span>;</span>
+<span class="pl-s1">            }</span>
+<span class="pl-s1">            <span class="pl-e">#send</span> {</span>
+<span class="pl-s1">                <span class="pl-c1"><span class="pl-c1">width</span></span>: <span class="pl-c1">90<span class="pl-k">px</span></span>;</span>
+<span class="pl-s1">                <span class="pl-c1"><span class="pl-c1">margin</span></span>: <span class="pl-c1">0</span>;</span>
+<span class="pl-s1">            }</span>
+<span class="pl-s1">            <span class="pl-e">#output</span> {</span>
+<span class="pl-s1">                <span class="pl-c1"><span class="pl-c1">width</span></span>: <span class="pl-c1">500<span class="pl-k">px</span></span>;</span>
+<span class="pl-s1">                <span class="pl-c1"><span class="pl-c1">height</span></span>: <span class="pl-c1">300<span class="pl-k">px</span></span>;</span>
+<span class="pl-s1">            }</span>
+<span class="pl-s1">        &lt;/<span class="pl-ent">style</span>&gt;</span>
+    &lt;/<span class="pl-ent">head</span>&gt;
+    &lt;<span class="pl-ent">body</span>&gt;
+        &lt;<span class="pl-ent">textarea</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>output<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">textarea</span>&gt;&lt;<span class="pl-ent">br</span> /&gt;
+        &lt;<span class="pl-ent">input</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>input<span class="pl-pds">"</span></span> /&gt;&lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>submit<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>send<span class="pl-pds">"</span></span> <span class="pl-e">value</span>=<span class="pl-s"><span class="pl-pds">"</span>Send<span class="pl-pds">"</span></span> <span class="pl-e">onclick</span>=<span class="pl-s"><span class="pl-pds">"</span>javascript:click();<span class="pl-pds">"</span></span> /&gt;
+    &lt;/<span class="pl-ent">body</span>&gt;
+&lt;/<span class="pl-ent">html</span>&gt;</pre></div>
 
 <h1>
 <a id="contributor" class="anchor" href="#contributor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributor</h1>
