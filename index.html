@@ -23,7 +23,7 @@
 <a id="instalasi-ign-arm" class="anchor" href="#instalasi-ign-arm" aria-hidden="true"><span class="octicon octicon-link"></span></a>Instalasi IGN Arm</h1>
 
 <h2>
-<a id="apa-itu-ign-arm-" class="anchor" href="#apa-itu-ign-arm-" aria-hidden="true"><span class="octicon octicon-link"></span></a>apa itu IGN ARM ?</h2>
+<a id="apa-itu-ign-arm-" class="anchor" href="#apa-itu-ign-arm-" aria-hidden="true"><span class="octicon octicon-link"></span></a>Apa itu IGN ARM ?</h2>
 
 <p>lihat <a href="http://igos-nusantara.or.id/wiki/index.php?title=Halaman_Utama#IGOS_Nusantara_ARM">IGNwiki</a></p>
 
@@ -58,6 +58,78 @@
 <li>Proses selesai masukan sdcard yang sudah terinstalasi ign arm kedalam komputer berbasis ARM</li>
 <li><strong>Boot</strong></li>
 </ol>
+
+<h1>
+<a id="ignsdk-iot-runtime" class="anchor" href="#ignsdk-iot-runtime" aria-hidden="true"><span class="octicon octicon-link"></span></a>IGNSDK IoT Runtime</h1>
+
+<p>IGNSDK IoT runtime merupakan perkakas yang memudahkan client apps library IGNSDK IoT (<a href="npmjs.com/package/shark.io">Shark.io</a>) mengakses interface perangkat keras, sensor, sql, filesystem, dan etc, menggunakan javascript API.</p>
+
+<h2>
+<a id="arsitektur" class="anchor" href="#arsitektur" aria-hidden="true"><span class="octicon octicon-link"></span></a>Arsitektur</h2>
+
+<p><img src="https://raw.githubusercontent.com/ignsdk/doc.iot/master/img/ign-arch.png" alt="IGNSDK Arsitektur"></p>
+
+<h2>
+<a id="cara-mengakses-petunjuk-penggunaan" class="anchor" href="#cara-mengakses-petunjuk-penggunaan" aria-hidden="true"><span class="octicon octicon-link"></span></a>Cara mengakses petunjuk penggunaan</h2>
+
+<p>pada terminal, ketik</p>
+
+<div class="highlight highlight-bash"><pre><span class="pl-c"># ignsdk -h</span></pre></div>
+
+<p>perintah memunculkan informasi sebagai berikut :</p>
+
+<div class="highlight highlight-bash"><pre>Usage: ignsdk-iot [options]
+IGOS Nusantara Software Development Kit For IoT
+
+Options:
+  -v, --version                               Show version
+  -p, --port <span class="pl-k">&lt;</span>port<span class="pl-k">&gt;</span>                           Setup websocket port
+  -t, --target <span class="pl-k">&lt;</span>all, public, <span class="pl-c1">set</span> ip address<span class="pl-k">&gt;</span>  Set IP target
+  -n, --nodejs <span class="pl-k">&lt;</span>nodejs script<span class="pl-k">&gt;</span>                Execute nodejs script
+  -h, --help                                  Displays this <span class="pl-c1">help</span>.</pre></div>
+
+<h2>
+<a id="menjalankan-runtime-di-jaringan-lokal-maupun-public" class="anchor" href="#menjalankan-runtime-di-jaringan-lokal-maupun-public" aria-hidden="true"><span class="octicon octicon-link"></span></a>Menjalankan runtime di jaringan lokal maupun public</h2>
+
+<p>pada terminal ketik</p>
+
+<div class="highlight highlight-bash"><pre>$ su
+<span class="pl-c"># ignsdk-iot -t all &amp;</span></pre></div>
+
+<p>perintah tersebut untuk menjalankan runtime ignsdk-iot dengan mengarahkan ke IP yang tersedia pada device.</p>
+
+<p><strong>-t</strong> itu menunjukan alamat <strong>IP</strong> yang akan menjalankan ignsdk-iot</p>
+
+<p>jika berhasil outputnya akan menjadi :</p>
+
+<div class="highlight highlight-bash"><pre><span class="pl-c"># [1] 458</span>
+Server ON <span class="pl-c1">:</span>  <span class="pl-s"><span class="pl-pds">"</span>0.0.0.0<span class="pl-pds">"</span></span> Port <span class="pl-c1">:</span> 6969</pre></div>
+
+<h2>
+<a id="menjalankan-nodejs-script-dengan-runtime-ignsdk-iot" class="anchor" href="#menjalankan-nodejs-script-dengan-runtime-ignsdk-iot" aria-hidden="true"><span class="octicon octicon-link"></span></a>Menjalankan NodeJS Script dengan runtime <strong>ignsdk-iot</strong>
+</h2>
+
+<div class="highlight highlight-bash"><pre>$ su
+<span class="pl-c"># ignsdk-iot -n (aplikasi berbasis node js yang ingin dijalankan)</span></pre></div>
+
+<h1>
+<a id="contributor" class="anchor" href="#contributor" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributor</h1>
+
+<h2>
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Documentation</h2>
+
+<ul>
+<li>Brahmanggi Aditya <a href="mailto:brahmanggi@gmail.com">brahmanggi@gmail.com</a>
+</li>
+</ul>
+
+<h2>
+<a id="web" class="anchor" href="#web" aria-hidden="true"><span class="octicon octicon-link"></span></a>Web</h2>
+
+<ul>
+<li>Rizky Ariestiyansyah <a href="mailto:ariestiyansyah.rizky@gmail.com">ariestiyansyah.rizky@gmail.com</a>
+</li>
+</ul>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/ignsdk/doc.iot">IGN IoT Documentation</a> is maintained by <a href="https://github.com/ignsdk">ignsdk</a>.</span>
