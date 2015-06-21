@@ -1,6 +1,6 @@
 # Instalasi IGN Arm
 
-## apa itu IGN ARM ?
+## Apa itu IGN ARM ?
 lihat [IGNwiki](http://igos-nusantara.or.id/wiki/index.php?title=Halaman_Utama#IGOS_Nusantara_ARM)
 
 > **IGN ARM** adalah distro **IGOS** linux yang dikembangkan khusus untuk komputer dengan arsitektur ARM.
@@ -21,3 +21,54 @@ $ sudo dd bs=4MB if=folder/image/ignarm/berada of=/dev/microsd/berada
 ~~~
 7. Proses selesai masukan sdcard yang sudah terinstalasi ign arm kedalam komputer berbasis ARM
 8. **Boot**
+
+## cara akses petunjuk penggunaan
+
+pada terminal, ketik
+
+~~~bash
+# ignsdk -h
+~~~
+perintah memunculkan informasi sebagai berikut :
+~~~bash
+Usage: ignsdk-iot [options]
+IGOS Nusantara Software Development Kit For IoT
+
+Options:
+  -v, --version                               Show version
+  -p, --port <port>                           Setup websocket port
+  -t, --target <all, public, set ip address>  Set IP target
+  -n, --nodejs <nodejs script>                Execute nodejs script
+  -h, --help                                  Displays this help.
+~~~
+
+## cara menjalankan untuk bisa diakses dari luar
+
+pada terminal ketik
+
+~~~bash
+# ignsdk-iot -t all &
+~~~
+
+perintah tersebut untuk menjalankan ignsdk-iot dengan mengarahkan ke IP yang tersedia pada device.
+
+ **-t** itu menunjukan alamat **IP** yang akan menjalankan ignsdk-iot
+
+jika berhasil ada output
+
+~~~bash
+# [1] 458
+Server ON :  "0.0.0.0" Port : 6969
+~~~
+
+## cara menjalankan di lokal
+
+~~~bash
+# ignsdk-iot -n (aplikasi berbasis node js yang ingin dijalankan)
+~~~
+
+# Contributor
+## Documentation
+* Brahmanggi Aditya <brahmanggi@gmail.com>
+## Web
+* Rizky Ariestiyansyah <ariestiyansyah.rizky@gmail.com>
