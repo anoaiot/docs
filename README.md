@@ -233,6 +233,7 @@ loop(act,2000);
 ~~~
 
 Source : `led_blink.js`
+
 ![](https://raw.githubusercontent.com/ignsdk/doc.iot/master/img/use/blink.png)
 ~~~javascript
 'use strict';
@@ -261,6 +262,9 @@ loop(act,500);
 ~~~
 
 Source : `gpio_read.js`
+
+![](https://raw.githubusercontent.com/ignsdk/doc.iot/master/img/use/sw.jpg)
+
 ~~~javascript
 'use strict';
 
