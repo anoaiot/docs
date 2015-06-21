@@ -75,7 +75,7 @@ $ su
 # ignsdk-iot -n (aplikasi berbasis node js yang ingin dijalankan)
 ~~~
 
-# Shark.io
+# [Shark.io](npmjs.com/package/shark.io)
 JavaScript Client Library untuk mengakses API IGNSDK IoT. Saat ini shark.io baru dapat digunakan pada :
 * NodeJS/JX Core
 * HTML5
