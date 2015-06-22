@@ -32,7 +32,7 @@ IGNSDK IoT runtime merupakan perkakas yang memudahkan client apps library IGNSDK
 
 pada terminal, ketik
 ~~~bash
-# ignsdk -h
+$ ignsdk-iot -h
 ~~~
 
 perintah memunculkan informasi sebagai berikut :
