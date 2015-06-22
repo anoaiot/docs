@@ -11,7 +11,7 @@ lihat [IGNwiki](http://igos-nusantara.or.id/wiki/index.php?title=Halaman_Utama#I
 ~~~bash
 $ sudo tar xvfJ filename.tar.xz
 ~~~
-3. siapkan micro sdcard dengan kapasitas minimal **4 GB**
+3. siapkan micro sdcard dengan kapasitas minimal **2 GB**
 4. masukan micro sdcard kedalam extention sdcard dan pasang di pc / laptop
 5. deteksi device melalui terminal dengan perintah **dmesg** misalkan
 **/dev/mmclbk0**
